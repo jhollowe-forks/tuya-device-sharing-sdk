@@ -96,6 +96,8 @@ class CustomerApi:
         sign = _restful_sign(hash_key, query_encdata, body_encdata, headers)
         headers["X-sign"] = sign
 
+        logger.debug(f"{method} request: {self.endpoint + path} params={params} body={body}")
+
         response = self.session.request(
             method,
             self.endpoint + path,
@@ -112,7 +114,6 @@ class CustomerApi:
             return None
 
         ret = response.json()
-        logger.debug("response before decrypt ret = %s", ret)
 
         if not ret.get("success"):
             raise Exception(f"network error:({ret['code']}) {ret['msg']}")
