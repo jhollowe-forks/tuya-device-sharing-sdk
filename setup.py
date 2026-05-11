@@ -39,7 +39,7 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
     version=__version__,
-    install_requires=requirements(),
+    install_requires=["requests","paho-mqtt"],
     test_suite="runtests.runtests",
     entry_points={"nose.plugins": []},
     packages=find_packages(),
